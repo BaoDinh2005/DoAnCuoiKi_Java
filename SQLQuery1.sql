@@ -15,20 +15,17 @@ GO
 
 DROP TABLE IF EXISTS ChiTietDonHang;
 DROP TABLE IF EXISTS DichVu;
-GO
--- Bảng Dịch vụ
+go
 CREATE TABLE DichVu (
     MaDV INT IDENTITY(1,1) PRIMARY KEY,
     TenDV NVARCHAR(100) NOT NULL,
     GiaTien DECIMAL(18,2) NOT NULL,
-    DonViTinh NVARCHAR(50) NOT NULL,
-    HoTen NVARCHAR(100) NULL,       
+    DonViTinh NVARCHAR(50) NULL,
+    HoTen NVARCHAR(100) NULL,
     NgayNhan DATE NULL,
-    NgayTra DATE NULL,
-    MoTa NVARCHAR(255) NULL,
-	MoTaChiTiet NVARCHAR(255) NULL,
+    NgayTra DATE NULL
 );
-GO
+
 -- Bảng Đơn hàng
 CREATE TABLE DonHang (
     MaDH INT IDENTITY(1,1) PRIMARY KEY,
@@ -82,14 +79,13 @@ GO
 
 -- Thêm dữ liệu Dịch vụ
 
-INSERT INTO DichVu (TenDV, GiaTien, DonViTinh, HoTen, NgayNhan, NgayTra, MoTa, MoTaChiTiet)
+INSERT INTO DichVu (TenDV, GiaTien, DonViTinh, HoTen, NgayNhan, NgayTra)
 VALUES
-(N'Giặt áo vest', 50000, N'Cái', N'Nguyễn Văn An', '2024-09-05', '2024-09-06', N'Giặt sạch áo vest cao cấp', N'Áo vest giặt kỹ, phẳng đẹp'),
-(N'Ủi quần tây', 15000, N'Cái', N'Trần Thị Bình', '2024-09-06', '2024-09-07', N'Ủi phẳng quần tây', N'Ủi phẳng quần tây sau giặt'),
-(N'Giặt rèm cửa', 120000, N'Cái', N'Lê Văn Cường', '2024-09-07', '2024-09-08', N'Giặt rèm cửa lớn', N'Rèm cửa giặt sạch, thơm'),
-(N'Giặt sofa', 300000, N'Bộ', N'Phạm Thị Dung', '2024-09-08', '2024-09-09', N'Giặt sofa tại nhà', N'Giặt sofa 3-4 chỗ ngồi'),
-(N'Giặt chăn ga', 80000, N'Cái', N'Hoàng Văn Em', '2024-09-09', '2024-09-10', N'Giặt sạch chăn ga', N'Chăn ga giặt sạch, thơm mát');
-GO
+(N'Giặt áo vest', 50000, N'Cái', N'Nguyễn Văn An', '2024-09-05', '2024-09-06'),
+(N'Ủi quần tây', 15000, N'Cái', N'Trần Thị Bình', '2024-09-06', '2024-09-07'),
+(N'Giặt rèm cửa', 120000, N'Cái', N'Lê Văn Cường', '2024-09-07', '2024-09-08'),
+(N'Giặt sofa', 300000, N'Bộ', N'Phạm Thị Dung', '2024-09-08', '2024-09-09'),
+(N'Giặt chăn ga', 80000, N'Cái', N'Hoàng Văn Em', '2024-09-09', '2024-09-10');
 
 -- Thêm dữ liệu Đơn hàng
 INSERT INTO DonHang (MaKH, NgayNhan, NgayTra, TrangThai, TongTien, GhiChu) 

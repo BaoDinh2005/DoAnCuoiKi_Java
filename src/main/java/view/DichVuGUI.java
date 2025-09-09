@@ -398,7 +398,7 @@ public class DichVuGUI extends javax.swing.JFrame {
             dv.setTenDV(txtTenDV.getText().trim());
             dv.setDonViTinh(txtDonViTinh.getText().trim());
 
-            // Xử lý giá tiền: chỉ chấp nhận số
+            // Xử lý giá tiền
             String giaTienStr = txtGiaTien.getText().trim();
             if (giaTienStr.isEmpty()) {
                 javax.swing.JOptionPane.showMessageDialog(this, "Giá tiền không được để trống!");
@@ -414,24 +414,27 @@ public class DichVuGUI extends javax.swing.JFrame {
             }
             dv.setGiaTien(giaTien);
 
-            // Kiểm tra ngày nhận và ngày trả
+            // Lấy ngày từ JDateChooser
             if (dateNgayNhann.getDate() == null || dateNgayTra.getDate() == null) {
                 javax.swing.JOptionPane.showMessageDialog(this, "Ngày nhận và ngày trả không được để trống!");
                 return;
             }
-            dv.setNgayNhan(dateNgayNhann.getDate());
-            dv.setNgayTra(dateNgayTra.getDate());
+
+            java.util.Date ngayNhanUtil = dateNgayNhann.getDate();
+            java.util.Date ngayTraUtil = dateNgayTra.getDate();
+            dv.setNgayNhan(new java.sql.Date(ngayNhanUtil.getTime()));
+            dv.setNgayTra(new java.sql.Date(ngayTraUtil.getTime()));
 
             dv.setHoTen(cboHoTen.getSelectedItem().toString());
 
-            // Nếu là thêm mới
+            // Thêm mới hoặc sửa
             if (txtMaDV.getText().equals("Auto")) {
                 if (dichVuDAO.themDichVu(dv)) {
                     javax.swing.JOptionPane.showMessageDialog(this, "Thêm dịch vụ thành công!");
                 } else {
                     javax.swing.JOptionPane.showMessageDialog(this, "Thêm thất bại!");
                 }
-            } else { // Nếu là sửa
+            } else {
                 dv.setMaDV(Integer.parseInt(txtMaDV.getText()));
                 if (dichVuDAO.suaDichVu(dv)) {
                     javax.swing.JOptionPane.showMessageDialog(this, "Sửa dịch vụ thành công!");

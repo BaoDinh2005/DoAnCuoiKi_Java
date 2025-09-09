@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class DichVu {
 
@@ -8,7 +8,7 @@ public class DichVu {
     private String tenDV;
     private double giaTien;
     private String donViTinh;
-    private String hoTen;   
+    private String hoTen;
     private Date ngayNhan;
     private Date ngayTra;
 
@@ -16,7 +16,7 @@ public class DichVu {
     }
 
     public DichVu(int maDV, String tenDV, double giaTien, String donViTinh,
-                  String hoTen, Date ngayNhan, Date ngayTra) {
+            String hoTen, Date ngayNhan, Date ngayTra) {
         this.maDV = maDV;
         this.tenDV = tenDV;
         this.giaTien = giaTien;
